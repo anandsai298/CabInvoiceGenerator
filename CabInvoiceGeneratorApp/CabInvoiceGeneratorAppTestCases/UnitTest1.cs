@@ -44,5 +44,14 @@ namespace CabInvoiceGeneratorAppTestCases
             InvoiceSummary res = this.cabInvoiceGenerator.GetMultipleRideFare(data);
             Assert.AreEqual(2, res.No_Of_Rides);
         }
+        [Test]
+        public void GivenCalculateMultipleRideFare_WhenAnalyse_ShouldReturnServiceSummaryUserid()
+        {
+            CabInvoiceGenerator respositary = new CabInvoiceGenerator();
+            ModelRide[] data = { new ModelRide(2.0, 5.0), new ModelRide(3.0, 5.0) };
+            respositary.MapRideToUser("Ask", data);
+            InvoiceSummary res = respositary.GetInvoiceSummary("Ask");
+            Assert.AreEqual(res.TotalFare,60.0);
+        }
     }
 }

@@ -2,6 +2,7 @@
 {
     public class CabInvoiceGenerator
     {
+        RideRespiratory rideRespiratory=new RideRespiratory();
         private static readonly double COST_PER_KM = 10.0;
         private static readonly double COST_PER_MIN = 1.0;
         private static readonly double MINIMUM_FARE = 5.0;
@@ -19,6 +20,14 @@
                 Total_Ride_Fare += this.CalculateFare(data.RideDistance, data.RideTime);
             }
             return new InvoiceSummary(Total_Ride_Fare, rides.Length);
+        }
+        public void MapRideToUser(string userId, ModelRide[] rides)
+        {
+            this.rideRespiratory.AddCabRides(userId, rides);
+        }
+        public InvoiceSummary GetInvoiceSummary(string userId)
+        {
+            return this.GetMultipleRideFare(this.rideRespiratory.GetCabRides(userId));
         }
     }
 }
