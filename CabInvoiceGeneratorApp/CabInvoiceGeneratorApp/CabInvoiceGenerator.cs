@@ -11,5 +11,14 @@
             this.CabFare = (Distance * COST_PER_KM) + (Time * COST_PER_MIN);
             return Math.Max(this.CabFare, MINIMUM_FARE);
         }
+        public double GetMultipleRideFare(ModelRide[] rides)
+        {
+            double Total_Ride_Fare= 0.0;
+            foreach(ModelRide data in rides)
+            {
+                Total_Ride_Fare += this.CalculateFare(data.RideDistance ,data.RideTime);
+            }
+            return Total_Ride_Fare;
+        }
     }
 }

@@ -23,5 +23,12 @@ namespace CabInvoiceGeneratorAppTestCases
             double res = this.cabInvoiceGenerator.CalculateFare(0.2, 1);
             Assert.AreEqual(5, res);
         }
+        [Test]
+        public void GivenCalculateMultipleRideFare_WhenAnalyse_ShouldReturnTotalRideFare()
+        {
+            ModelRide[] data = { new ModelRide(2.0, 5.0), new ModelRide(3.0, 5.0) };
+            double res = this.cabInvoiceGenerator.GetMultipleRideFare(data);
+            Assert.AreEqual(60, res);
+        }
     }
 }
